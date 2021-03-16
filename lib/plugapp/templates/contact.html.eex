@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Contact | Cat Site</title>
+  </head>
+  <body>
+    <div class="notification"></div>
+
+      <div>
+        <label class="label">Name</label>
+        <input class="input name" type="text" placeholder="Your name">
+      </div>
+
+      <div>
+        <label class="label">Email</label>
+        <input class="input email" type="email" placeholder="Email input" value="">
+      </div>
+
+      <div>
+        <label class="label">Message</label>
+        <br/>
+        <textarea class="textarea message" placeholder="Textarea"></textarea>
+      </div>
+      <br/>
+      <button class="submit button is-link is-large">
+        <span>Submit</span>
+      </button>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+      $(function(){
+        var notification = $('.notification');
+        notification.hide();
+
+        $('button.submit').click(function() {
+          var body = {
+            name: $('input.name').val(),
+            email: $('input.email').val(),
+            message: $('input.message').val()
+          };
+
+          $.ajax({
+            type: 'POST',
+            url: '/contact',
+            data: body,
+            dataType: 'json',
+            success: function(data) {
+              $('.notification').html(data.message).show();
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

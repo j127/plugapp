@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cat Site</title>
+  </head>
+  <body>
+      <div class="cats">
+      <%= for entry <- portfolio do %>
+        <div>
+          <div><%= entry.name %></div>
+          <img src="<%= entry.image %>" alt="">
+        </div>
+      <% end %>
+      </div>
+  </body>
+</html>
